@@ -24,7 +24,16 @@ const app = express()
 // to make input as json
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+
+const allowedOrigins = [
+  'http://localhost:5173',            // for local development
+  'https://notes-app-frontend.vercel.app' 
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 
 // import routes
